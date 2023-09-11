@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .blue-background {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <p id="my-paragraph">Наведи курсор на меня!</p>
+
+    <script>
+        var paragraph = document.getElementById("my-paragraph");
+
+        paragraph.addEventListener("mouseover", function() {
+            paragraph.classList.add("blue-background");
+        });
+
+        paragraph.addEventListener("mouseout", function() {
+            paragraph.classList.remove("blue-background");
+        });
+    </script>
+</body>
+</html>
