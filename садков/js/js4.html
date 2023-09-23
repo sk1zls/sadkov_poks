@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Стиль для увеличения размера слова при наведении курсора */
+      .highlight {
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      Добро пожаловать на мой веб-сайт! Наведите курсор мыши на это слово, чтобы увидеть эффект.
+    </p>
+
+    <script>
+      // Получаем элемент абзаца
+      const paragraph = document.querySelector('p');
+      
+      // Обработчик событий при наведении курсора
+      function handleMouseEnter() {
+        paragraph.classList.add('highlight');
+      }
+      
+      // Обработчик событий при отведении курсора
+      function handleMouseLeave() {
+        paragraph.classList.remove('highlight');
+      }
+      
+      // Привязываем обработчики событий к элементу абзаца
+      paragraph.addEventListener('mouseenter', handleMouseEnter);
+      paragraph.addEventListener('mouseleave', handleMouseLeave);
+    </script>
+  </body>
+</html>

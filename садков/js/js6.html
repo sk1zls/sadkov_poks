@@ -1,0 +1,22 @@
+
+<head>
+  <title>Dialog Box Example</title>
+  <script>
+function makeOrder() {
+  var name = prompt('Введите фамилию и имя:');
+  var processor = prompt('Введите тип процессора:');
+  var memory = prompt('Введите объем памяти:');
+  var browser = navigator.userAgent;
+  
+  var message = 'Здравствуйте, ' + name + '! Вы выбрали компьютер с процессором ' + processor + ' и объемом памяти ' + memory + '.\nДля заказа Вы используете браузер ' + browser + '.\nХороший выбор!';
+  
+  alert(message);
+}
+
+// Вызываем функцию makeOrder()
+makeOrder();
+  </script>
+</head>
+<body>
+</body>
+</html>
