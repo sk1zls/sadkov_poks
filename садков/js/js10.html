@@ -1,56 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Форма с форматированием текста</title>
-  <script>
-    function formatText() {
-      var text = document.getElementById("textInput").value; // Получаем содержимое многострочного поля
-      var formattedText = "";
-
-      // Проверяем значения флажков и форматируем текст соответственно
-      if (document.getElementById("boldCheckbox").checked) {
-        formattedText += "<b>" + text + "</b> ";
-      }
-      if (document.getElementById("italicCheckbox").checked) {
-        formattedText += "<i>" + text + "</i> ";
-      }
-      if (document.getElementById("underlineCheckbox").checked) {
-        formattedText += "<u>" + text + "</u> ";
-      }
-
-      document.getElementById("formattedText").innerText = formattedText; // Отображаем отформатированный текст
+  <title>Форматирование текста</title>
+  <style>
+    p {
+      white-space: pre-wrap;
     }
-
-    function clearForm() {
-      document.getElementById("textInput").value = ""; // Очищаем многострочное поле
-      document.getElementById("boldCheckbox").checked = false; // Снимаем выбор с флажков
-      document.getElementById("italicCheckbox").checked = false;
-      document.getElementById("underlineCheckbox").checked = false;
-      document.getElementById("formattedText").innerText = ""; // Очищаем абзац
-    }
-  </script>
+  </style>
 </head>
 <body>
-  <form>
-    <label for="textInput">Текст:</label><br>
-    <textarea id="textInput" rows="4" cols="50"></textarea><br>
-
-    <label>
-      <input type="checkbox" id="boldCheckbox">Жирный шрифт
-    </label><br>
-
-    <label>
-      <input type="checkbox" id="italicCheckbox">Курсив
-    </label><br>
-
-    <label>
-      <input type="checkbox" id="underlineCheckbox">Подчеркивание
-    </label><br>
-
-    <button type="button" onclick="formatText()">Форматировать</button>
-    <button type="reset" onclick="clearForm()">Очистить</button>
-  </form>
-
+  <textarea id="inputText" rows="4" cols="50"></textarea><br>
+  <label><input type="checkbox" id="checkboxBold"> Полужирный</label>
+  <label><input type="checkbox" id="checkboxItalic"> Курсив</label>
+  <label><input type="checkbox" id="checkboxUnderline"> Подчеркнутый</label><br>
+  <button onclick="formatText()">Форматировать</button>
+  <button onclick="clearText()">Очистить</button><br>
   <p id="formattedText"></p>
+
+  <script>
+    function formatText() {
+      var inputElement = document.getElementById("inputText");
+      var formattedTextElement = document.getElementById("formattedText");
+      var formattedText = inputElement.value;
+
+      if (document.getElementById("checkboxBold").checked) {
+        formattedText = "<b>" + formattedText + "</b>";
+      }
+
+      if (document.getElementById("checkboxItalic").checked) {
+        formattedText = "<i>" + formattedText + "</i>";
+      }
+
+      if (document.getElementById("checkboxUnderline").checked) {
+        formattedText = "<u>" + formattedText + "</u>";
+      }
+
+      formattedTextElement.innerHTML = formattedText;
+    }
+
+    function clearText() {
+      var inputElement = document.getElementById("inputText");
+      var formattedTextElement = document.getElementById("formattedText");
+
+      inputElement.value = "";
+      formattedTextElement.innerHTML = "";
+    }
+  </script>
 </body>
 </html>

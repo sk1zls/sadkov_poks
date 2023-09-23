@@ -1,56 +1,63 @@
-<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
-  <title>Форма заявки</title>
+  <title>Обработка формы</title>
+</head>
+<body>
+  <form id="myForm">
+    <label for="firstName">Имя:</label>
+    <input type="text" id="firstName" required><br>
+
+    <label for="lastName">Фамилия:</label>
+    <input type="text" id="lastName" required><br>
+
+    <label for="gender">Пол:</label>
+    <select id="gender">
+      <option value="male">Мужской</option>
+      <option value="female">Женский</option>
+    </select><br>
+
+    <label for="education">Образование:</label>
+    <select id="education">
+      <option value="primary">Начальное</option>
+      <option value="secondary">Среднее</option>
+      <option value="higher">Высшее</option>
+    </select><br>
+
+    <label for="courses">Курсы:</label><br>
+    <input type="checkbox" id="database" name="course" value="database">
+    <label for="database">Базы данных</label><br>
+    <input type="checkbox" id="web" name="course" value="web">
+    <label for="web">Web-программирование</label><br>
+    <input type="checkbox" id="graphics" name="course" value="graphics">
+    <label for="graphics">Компьютерная графика</label><br>
+
+    <input type="submit" value="Отправить">
+  </form>
+
   <script>
-    document.getElementById("applicationForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Отменить отправку формы
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Предотвращение отправки формы
 
-      var surname = document.getElementById("surname").value;
-      var name = document.getElementById("name").value;
-      var gender = document.querySelector('input[name="gender"]:checked');
+      var firstName = document.getElementById("firstName").value.trim();
+      var lastName = document.getElementById("lastName").value.trim();
+      var gender = document.getElementById("gender").value;
       var education = document.getElementById("education").value;
-      var courses = document.querySelectorAll('input[name="courses"]:checked');
+      var courses = [];
+      var coursesInputs = document.getElementsByName("course");
 
-      if (surname && name && gender && gender.value && education && courses.length > 0) {
-        alert("Уважаемый(ая)" ${surname} ${name}"! Ваша заявка принята.");
+      for (var i = 0; i < coursesInputs.length; i++) {
+        if (coursesInputs[i].checked) {
+          courses.push(coursesInputs[i].value);
+        }
+      }
+
+      if (firstName !== '' && lastName !== '') {
+        var message = `Уважаем${gender === 'female' ? 'ая' : 'ый'} ${lastName} ${firstName}! Ваша заявка принята. Имеющееся образование: ${education}. Хочу записаться на курсы: ${courses.join(", ")}.`;
+        window.alert(message);
       } else {
-        alert("Не все данные введены!");
+        window.alert('Не все данные введены!');
       }
     });
   </script>
-</head>
-<body>
-  <form id="applicationForm">
-    <label for="surname">Фамилия:</label>
-    <input type="text" id="surname" required><br>
-
-    <label for="name">Имя:</label>
-    <input type="text" id="name" required><br>
-
-    <label>Пол:</label>
-    <input type="radio" id="male" name="gender" value="М" required>
-    <label for="male">М</label>
-    <input type="radio" id="female" name="gender" value="Ж" required>
-    <label for="female">Ж</label><br>
-
-    <label for="education">Образование:</label>
-    <select id="education" required>
-      <option value="среднее">Среднее</option>
-      <option value="высшее">Высшее</option>
-      <option value="9 класов">9 классов</option>
-      <option value="11 класов">11 классов</option>
-    </select><br>
-
-    <label>Хочу записаться на курсы по:</label><br>
-    <input type="checkbox" id="database" name="courses" value="базы данных">
-    <label for="database">Базы данных</label><br>
-    <input type="checkbox" id="webProgramming" name="courses" value="Web-программирование">
-    <label for="webProgramming">Web-программирование</label><br>
-    <input type="checkbox" id="computerGraphics" name="courses" value="компьютерная графика">
-    <label for="computerGraphics">Компьютерная графика</label><br>
-
-    <button type="submit">Отправить</button>
-  </form>
 </body>
 </html>
